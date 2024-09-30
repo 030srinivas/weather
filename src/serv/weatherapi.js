@@ -41,21 +41,4 @@ export const getCurrentWeather = async ({Chharjarsi}) => {
   }));
  };
 
-export const getClimateDetails = async (city) => {
-   const response = await fetch(
-     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
-   );
 
-   if (!response.ok) {
-     throw new Error('Error fetching climate details');
-   }
-
-   const data = await response.json();
-
-   return {
-     sunrise: new Date(data.sys.sunrise * 1000).toLocaleTimeString(),
-     sunset: new Date(data.sys.sunset * 1000).toLocaleTimeString(),
-     airQualityIndex: data.air_quality_index || 'N/A', // Assuming this data is available
-     lifestyleTips: 'Stay hydrated and wear sunscreen!', // Placeholder tips
-   };
- };
